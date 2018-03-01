@@ -1,19 +1,19 @@
 package info.kubarek;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ConcurrentPractise
 {
+    /** Value to be decremented and inremented in the same time. */
+    volatile int value = 0;
     
-    static int baseSteps = 1000;
-
+    volatile boolean isSynchronized;
+    
     public static void main(String[] args) throws Exception
     {
-        assert(args != null);
+        assert args != null : "args cannot be null.";
         
-        // TODO Auto-generated method stub
         final int THREADZ = 1000;
         List<Thread> threads = new ArrayList<Thread>(THREADZ);
         for (int i = 0; i < THREADZ; i++)
@@ -26,6 +26,7 @@ public class ConcurrentPractise
                     try
                     {
                         ConcurrentPractise cp = new ConcurrentPractise();
+                        cp.isSynchronized = args.length > 0 ? Boolean.parseBoolean(args[0]) : false;
                         Thread a = new Thread(cp::adder);
                         Thread b = new Thread(cp::subtracter);
                         a.start();
@@ -54,34 +55,21 @@ public class ConcurrentPractise
             x.join();
         
         System.out.println("Done.");
-        
     }
     
-    public static <T> void exchange(T[] array, int pos1, int pos2) 
-    {
-        T tmp = array[pos1];
-        array[pos1] = array[pos2];
-        array[pos2] = tmp;
-    }
-    
-    public static void print(List<? extends Number> list) 
-    {
-        for (Number n : list)
-            System.out.print(n + " ");
-        System.out.println();
-    }
-    
-    int steps = 100; // (int)(Math.random() * 1000 + 5000);
+    int steps = 111;
     
     void adder()
     {
         for (int i = 0; i < steps; i++)
         {
-//            value++;
-            synchronized(this) 
-            {
+            if (isSynchronized)
+                synchronized(this) 
+                {
+                    value++;
+                }
+            else
                 value++;
-            }
         }
     }
     
@@ -89,15 +77,16 @@ public class ConcurrentPractise
     {
         for (int i = 0; i < steps; i++)
         {
-//            value--;
-            synchronized(this) 
-            {
+            if (isSynchronized)
+                synchronized(this) 
+                {
+                    value--;
+                }
+            else
                 value--;
-            }
         }
     }
     
     
-    int value = 0;
 
 }
