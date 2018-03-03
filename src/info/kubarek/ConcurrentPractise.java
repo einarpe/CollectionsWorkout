@@ -86,7 +86,9 @@ public class ConcurrentPractise
                 value--;
         }
     }
-    
+    /*
+     * Dodajmy komentarz na gałęzi master. 
+     */
     
 
 }
