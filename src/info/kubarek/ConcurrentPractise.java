@@ -8,6 +8,7 @@ public class ConcurrentPractise
     /** Value to be decremented and inremented in the same time. */
     volatile int value = 0;
     
+    /** Is there synchronization enabled? */
     volatile boolean isSynchronized;
     
     public static void main(String[] args) throws Exception
