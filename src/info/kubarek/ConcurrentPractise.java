@@ -94,5 +94,5 @@ public class ConcurrentPractise
      * Kolejny komentarz.
      */
     
-
+    // Tym razem już pchnijmy.
 }
