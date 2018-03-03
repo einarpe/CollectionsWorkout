@@ -8,10 +8,12 @@ public class ConcurrentPractise
     /** Value to be decremented and inremented in the same time. */
     volatile int value = 0;
     
+    /** Is there synchronization enabled? */
     volatile boolean isSynchronized;
     
     public static void main(String[] args) throws Exception
     {
+        /* Don't allow for null arguments to pass along. */
         assert args != null : "args cannot be null.";
         
         final int THREADZ = 1000;
