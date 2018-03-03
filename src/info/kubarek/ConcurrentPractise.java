@@ -90,5 +90,9 @@ public class ConcurrentPractise
      * Dodajmy komentarz na gałęzi master. 
      */
     
+    /**
+     * Kolejny komentarz.
+     */
+    
 
 }
