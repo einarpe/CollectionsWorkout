@@ -13,6 +13,7 @@ public class ConcurrentPractise
     
     public static void main(String[] args) throws Exception
     {
+        /* Don't allow for null arguments to pass along. */
         assert args != null : "args cannot be null.";
         
         final int THREADZ = 1000;
